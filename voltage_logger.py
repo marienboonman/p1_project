@@ -38,8 +38,8 @@ while True:
         #else:
         #   print('waiting')
        
-        if n == 3:
+        if n == 360:
            endtime = timestamp
            filename = ('data/data_from_{}_to_{}.csv'.format(starttime, endtime))
-           s.to_csv(filename.replace(':','-'))
+           s.to_csv(filename.replace(':','-').replace(' ','_'))
            break
