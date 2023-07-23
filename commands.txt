@@ -1,0 +1,7 @@
+start proces en laat het draaien:
+nohup -commando- &
+
+proces killen:
+kill -9 ID
+ID vinden:
+ps -ef | grep nohup
