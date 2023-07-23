@@ -30,19 +30,16 @@ while True:
         try:
             voltage, timestamp = get_voltage()
             if timestamp.second%10 == 0:
-            s[timestamp] = voltage
-            time.sleep(7)
-            n = n+1
-            #print('added')
-            if n == 1:
-                starttime = timestamp
-            #else:
-            #   print('waiting')
+                s[timestamp] = voltage
+                time.sleep(7)
+                n = n+1
+                if n == 1:
+                    starttime = timestamp
         
             if n == 360:
-            endtime = timestamp
-            filename = ('data/data_from_{}_to_{}.csv'.format(starttime, endtime))
-            s.to_csv(filename.replace(':','-').replace(' ','_'))
-            break
+                endtime = timestamp
+                filename = ('data/data_from_{}_to_{}.csv'.format(starttime, endtime))
+                s.to_csv(filename.replace(':','-').replace(' ','_'))
+                break
         except:
             print('Polling failed at {}'.format(str(datetime.now())))
