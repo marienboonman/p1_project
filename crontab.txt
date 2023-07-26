@@ -1,0 +1,2 @@
+@reboot python /home/p1_mon/p1_project/voltage_logger.py
+> start scrypt voltage_logger.py in python bij opstarten van de pi
