@@ -7,6 +7,12 @@ Created on Sat Jul 22 00:09:14 2023
 from datetime import datetime 
 import pandas as pd
 import time
+import sys
+
+try:
+    rep = int(sys.argv[1])
+except:
+    rep = 360
 
 def get_voltage(url = 'http://{}/api/v1/p1port/telegram', ip = '192.168.2.6' ,timestamp = True):
     import json
