@@ -10,4 +10,4 @@
 ### END INIT INFO
 
 import os
-os.system('/home/p1_mon/p1_project/printer.py')
+os.system('/home/p1_project/printer.py')
