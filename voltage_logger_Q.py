@@ -46,6 +46,16 @@ n = 0
 while True:
     try:
         voltage, timestamp = get_voltage()
+        if timestamp.minute == 0:
+            break
+    except:
+        print('Polling failed at {}'.format(str(datetime.now())))
+   
+time.sleep(8)
+
+while True:
+    try:
+        voltage, timestamp = get_voltage()
         if timestamp.second%10 == 0:
             s[timestamp] = voltage
             time.sleep(8)
