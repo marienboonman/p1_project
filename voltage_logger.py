@@ -42,10 +42,11 @@ while True:
                 if n == 1:
                     starttime = timestamp
         
-            if n == 360:
+            if n == rep:
                 endtime = timestamp
                 filename = ('data/data_from_{}_to_{}.csv'.format(starttime, endtime))
                 s.to_csv(filename.replace(':','-').replace(' ','_'))
                 break
+            break
         except:
             print('Polling failed at {}'.format(str(datetime.now())))
