@@ -20,9 +20,11 @@ try:
 except:
     print('Invalid or no folder name specified')
 
-if not folder in os.listdir():
-    os.system('mkdir {}'.format(folder))
-
+try:
+    os.chdir(folder)
+except:
+    os.mkdir(folder)
+    os.chdir(folder)
 def get_voltage(url = 'http://{}/api/v1/p1port/telegram', ip = '192.168.2.6' ,timestamp = True):
     import json
     import requests
