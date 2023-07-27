@@ -38,22 +38,9 @@ def get_voltage(url = 'http://{}/api/v1/p1port/telegram', ip = '192.168.2.6' ,ti
             return [float(part.split('(')[1].split('*')[0]), datetime.strptime(telegram[0], "%Y-%m-%d %H:%M:%S")]
             break
         
-
-
 s = pd.Series(dtype = float, name = 'Spanning (V)')
 voltage, timestamp = get_voltage()
 n = 0
-time.sleep(30)
-
-while True:
-    try:
-        voltage, timestamp = get_voltage()
-        if timestamp.second > 51:
-            break
-    except:
-        print('Polling failed at {}'.format(str(datetime.now())))
-   
-time.sleep(6)
 
 while True:
     try:
@@ -65,10 +52,11 @@ while True:
             if n == 1:
                 starttime = timestamp
     
-        if n == rep:
-            endtime = timestamp
-            filename = ('{}/data_from_{}_to_{}.csv'.format(folder, starttime, endtime))
-            s.to_csv(filename.replace(':','-').replace(' ','_'))
-            break
+        if (timestamp.minute+1%15) == 0:
+            if timestamp.second == 50:
+                endtime = timestamp
+                filename = ('{}/data_from_{}_to_{}.csv'.format(folder, starttime, endtime))
+                s.to_csv(filename.replace(':','-').replace(' ','_'))
+                break
     except:
         print('Polling failed at {}'.format(str(datetime.now())))
