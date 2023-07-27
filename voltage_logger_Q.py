@@ -8,11 +8,21 @@ from datetime import datetime
 import pandas as pd
 import time
 import sys
+import os
 
 try:
     rep = int(sys.argv[1])
 except:
     rep = 6*15
+
+try:
+    folder = sys.argv[2]
+except:
+    print('Invalid or no folder name specified')
+    break
+
+if not folder in os.listdir():
+    os.system('mkdir {}'.format(folder))
 
 def get_voltage(url = 'http://{}/api/v1/p1port/telegram', ip = '192.168.2.6' ,timestamp = True):
     import json
@@ -37,14 +47,14 @@ while True:
         voltage, timestamp = get_voltage()
         if timestamp.second%10 == 0:
             s[timestamp] = voltage
-            time.sleep(7)
+            time.sleep(8)
             n = n+1
             if n == 1:
                 starttime = timestamp
     
         if n == rep:
             endtime = timestamp
-            filename = ('data/data_from_{}_to_{}.csv'.format(starttime, endtime))
+            filename = ('{}/data_from_{}_to_{}.csv'.format(folder, starttime, endtime))
             s.to_csv(filename.replace(':','-').replace(' ','_'))
             break
     except:
