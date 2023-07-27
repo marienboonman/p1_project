@@ -47,7 +47,7 @@ while True:
             if n == 1:
                 starttime = timestamp
     
-        if (timestamp.minute+1%15) == 0:
+        if (timestamp.minute+1)%15 == 0:
             if timestamp.second == 50:
                 endtime = timestamp
                 filename = ('{}/data_from_{}_to_{}.csv'.format(folder, starttime, endtime))
