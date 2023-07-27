@@ -19,7 +19,6 @@ try:
     folder = sys.argv[2]
 except:
     print('Invalid or no folder name specified')
-    break
 
 if not folder in os.listdir():
     os.system('mkdir {}'.format(folder))
