@@ -11,12 +11,7 @@ import sys
 import os
 
 try:
-    rep = int(sys.argv[1])
-except:
-    rep = 6*15
-
-try:
-    folder = sys.argv[2]
+    folder = sys.argv[1]
 except:
     print('Invalid or no folder name specified')
 
